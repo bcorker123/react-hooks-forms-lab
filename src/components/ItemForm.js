@@ -1,17 +1,23 @@
-import React from "react";
-import { v4 as uuid } from "uuid";
+import React,{useState} from "react";
 
-function ItemForm(props) {
+function ItemForm({name, setName, inputCategory, setInputCategory, onItemFormSubmit}) {
+  function nameChange(event){
+    setName(event.target.value)
+  }
+
+  function categoryChange(event){
+    setInputCategory(event.target.value)
+  }
   return (
-    <form className="NewItem">
+    <form className="NewItem" onSubmit={onItemFormSubmit}>
       <label>
         Name:
-        <input type="text" name="name" />
+        <input type="text" name="name" value={name} onChange={nameChange}/>
       </label>
 
       <label>
         Category:
-        <select name="category">
+        <select name="category" value={inputCategory} onChange={categoryChange}>
           <option value="Produce">Produce</option>
           <option value="Dairy">Dairy</option>
           <option value="Dessert">Dessert</option>
